@@ -1,0 +1,115 @@
+package biz.yama2211.bb;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Main extends JavaPlugin implements Listener {
+
+	public void onEnable() {
+	    getServer().getPluginManager().registerEvents(this, this);
+	    saveDefaultConfig();
+	}
+
+
+	@EventHandler
+	public void onBreak(BlockBreakEvent event) {
+		if(getConfig().getString("break") == "true") {
+		Player player = event.getPlayer();
+		if(player.hasPermission("buildblock.ignore.break")) {
+		return;
+		} else {
+				event.setCancelled(true);
+				if(getConfig().getString("breakmessage") == "true") {
+					player.sendMessage(ChatColor.translateAlternateColorCodes( '&' ,getConfig().getString("bream").replaceAll("%n%", "\n")));
+				}
+		}
+		}
+	}
+
+	@EventHandler
+	public void onPut(BlockPlaceEvent event) {
+		if(getConfig().getString("put") == "true") {
+		Player player = event.getPlayer();
+		if(player.hasPermission("buildblock.ignore.put")) {
+		return;
+		} else {
+				event.setCancelled(true);
+				if(getConfig().getString("putmessage") == "true") {
+					player.sendMessage(ChatColor.translateAlternateColorCodes( '&' ,getConfig().getString("putm").replaceAll("%n%", "\n")));
+				}
+		}
+		}
+}
+
+	@EventHandler
+	public void onPDrop(PlayerDropItemEvent event) {
+		if(getConfig().getString("drop") == "true") {
+		Player player = event.getPlayer();
+		if(player.hasPermission("buildblock.ignore.drop")) {
+		return;
+		} else {
+				event.setCancelled(true);
+				if(getConfig().getString("dropmessage") == "true") {
+					player.sendMessage(ChatColor.translateAlternateColorCodes( '&' ,getConfig().getString("dropm").replaceAll("%n%", "\n")));
+				}
+		}
+		}
+	}
+
+	@EventHandler
+	public void onPick(PlayerPickupItemEvent event) {
+		if(getConfig().getString("pickup") == "true") {
+		Player player = event.getPlayer();
+		if(player.hasPermission("buildblock.ignore.pickup")) {
+		return;
+		} else {
+				event.setCancelled(true);
+				if(getConfig().getString("pickupmessage") == "true") {
+					player.sendMessage(ChatColor.translateAlternateColorCodes( '&' ,getConfig().getString("pickupm").replaceAll("%n%", "\n")));
+				}
+		}
+		}
+	}
+
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+    {
+
+	    if(cmd.getName().equalsIgnoreCase("buildblock"))
+	    {
+	 	       if(args.length == 0)
+	 	       {
+	    	  PluginDescriptionFile yml = getDescription();
+	    	  sender.sendMessage(ChatColor.LIGHT_PURPLE + "===buildblock===");
+	    	  sender.sendMessage(ChatColor.GREEN + "PluginVersion : " + ChatColor.DARK_PURPLE + yml.getVersion());
+	    	  sender.sendMessage(ChatColor.AQUA + "/buildblock reload"+ChatColor.WHITE +": Configをリロードします。");
+	 	       }
+	    }
+	    if(args.length == 1)
+	       {
+	    	  if(args[0].equalsIgnoreCase("reload"))
+	    	  {
+		         if ((sender.hasPermission("buildblock.admin")) || (sender.isOp()))
+		         {
+		        	reloadConfig();
+	                  sender.sendMessage(ChatColor.LIGHT_PURPLE+ "Configのリロードしました。");
+	                  return true;
+		         }else{
+		        	 sender.sendMessage(ChatColor.RED+"権限がないので実行できません。");
+		        	 return true;
+		 			}
+	    	  }
+	       }
+
+		return false;
+    }
+}

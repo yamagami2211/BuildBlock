@@ -1,0 +1,32 @@
+# BuildBlock : Config
+# デフォルトすべてtrueですが、メッセージ系がとにかくうるさくなるかと思いますので
+# breakmessageなどのmessage項目をfalseにすることをおすすめします。
+
+#項目解説
+#～message : メッセージを表示させるか
+#～m : 表示するメッセージ
+#カラーコードは使え、改行も利用できます。
+
+#ブロックの破壊
+# Permission: buildblock.ignore.break
+break: true
+breakmessage: true
+bream: "破壊できません。"
+
+#ブロックの設置
+# Permission: buildblock.ignore.put
+put: true
+putmessage: true
+putm: "設置できません"
+
+#アイテムのドロップ(捨てる)
+# Permission: buildblock.ignore.drop
+drop: true
+dropmessage: true
+dropm: "捨てれません"
+
+#(落ちている)アイテムを取得
+# Permission: buildblock.ignore.pickup
+pickup: true
+pickupmessage: true
+pickupm: "拾えません。"

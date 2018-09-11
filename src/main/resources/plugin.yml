@@ -1,0 +1,34 @@
+name: BuildBlock
+version: 1.0.0
+main: biz.yama2211.bb.Main
+
+commands:
+  buildblock:
+    description: HelpCommand
+  buildblock.reload:
+    description: Config ReloadCommand
+
+permissions:
+  buildblock.ignore.break:
+    description: 破壊の制限
+    default: op
+  buildblock.ignore.put:
+    description: 設置の制限
+    default: op
+  buildblock.ignore.drop:
+    description: 捨てることの制限
+    default: op
+  buildblock.ignore.pickup:
+    description: 拾うことの制限
+    default: op
+  buildblock.ignore.*:
+    description: 制限系権限のすべて
+    default: op
+    children:
+      buildblock.ignore.break: true
+      buildblock.ignore.put: true
+      buildblock.ignore.drop: true
+      buildblock.ignore.pickup: true
+  buildblock.admin:
+    description: リロード
+    default: op
