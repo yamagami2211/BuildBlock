@@ -39,11 +39,6 @@ bed: true
 bedmessage: true
 bedm: "寝ることはできません"
 
-#実績の通知
-#Permission : なし
-#できない可能性あり。
-awarded : true
-
 #本の編集(完了時)
 #Permission : buildblock.ignore.book
 book : true
