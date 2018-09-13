@@ -7,12 +7,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockFromToEvent;
+import org.bukkit.event.block.BlockGrowEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.vehicle.VehicleCreateEvent;
+import org.bukkit.event.vehicle.VehicleDestroyEvent;
+import org.bukkit.event.vehicle.VehicleEnterEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -127,6 +133,49 @@ public class Main extends JavaPlugin implements Listener {
 				}
 		}
 		}
+	}
+
+
+	@EventHandler
+	public void onGrow(BlockGrowEvent event) {
+		if(getConfig().getString("grow") == "true") {
+				event.setCancelled(true);
+		}
+	}
+
+	@EventHandler
+	public void onFrom(BlockFromToEvent event) {
+		if(getConfig().getString("from") == "true") {
+				event.setCancelled(true);
+		}
+	}
+
+	@EventHandler
+	public void onEnchant(EnchantItemEvent event) {
+		if(getConfig().getString("enchant") == "true") {
+				event.setCancelled(true);
+		}
+	}
+
+	@EventHandler
+	public void onPlayerVelocity(VehicleEnterEvent event) {
+		if(getConfig().getString("velocity") == "true") {
+					event.setCancelled(true);
+			}
+	}
+
+	@EventHandler
+	public void onDestroy(VehicleDestroyEvent event) {
+		if(getConfig().getString("destroy") == "true") {
+					event.setCancelled(true);
+			}
+	}
+
+	@EventHandler
+	public void onCreate(VehicleCreateEvent event) {
+		if(getConfig().getString("create") == "true") {
+					event.setCancelled(true);
+			}
 	}
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)

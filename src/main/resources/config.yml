@@ -50,3 +50,25 @@ bookm: "本の編集はできません"
 bucket: true
 bucketmessage: true
 bucketm: "バケツをぶちまけることはできません"
+
+#1.0.2で追加項目
+#残念なことに権限を設定できそうにないので、Permissionはありません。
+
+#水流,溶岩流に変化が起きない
+from: true
+
+#作物が育たない
+grow: true
+
+#アイテムをエンチャント
+enchant: true
+
+#乗り物に乗れないように
+velocity: true
+
+#乗り物が消滅しない
+destroy: true
+
+#乗り物が生まれる
+#トロッコなどが設置されるとかかな?
+create: true
