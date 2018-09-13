@@ -8,7 +8,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerBedEnterEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,7 +22,6 @@ public class Main extends JavaPlugin implements Listener {
 	    getServer().getPluginManager().registerEvents(this, this);
 	    saveDefaultConfig();
 	}
-
 
 	@EventHandler
 	public void onBreak(BlockBreakEvent event) {
@@ -76,6 +78,52 @@ public class Main extends JavaPlugin implements Listener {
 				event.setCancelled(true);
 				if(getConfig().getString("pickupmessage") == "true") {
 					player.sendMessage(ChatColor.translateAlternateColorCodes( '&' ,getConfig().getString("pickupm").replaceAll("%n%", "\n")));
+				}
+		}
+		}
+	}
+
+
+	@EventHandler
+	public void onBedin(PlayerBedEnterEvent event) {
+		if(getConfig().getString("bed") == "true") {
+		Player player = event.getPlayer();
+		if(player.hasPermission("buildblock.ignore.bed")) {
+		return;
+		} else {
+				event.setCancelled(true);
+				if(getConfig().getString("bedmessage") == "true") {
+					player.sendMessage(ChatColor.translateAlternateColorCodes( '&' ,getConfig().getString("bedm").replaceAll("%n%", "\n")));
+				}
+		}
+		}
+	}
+
+	@EventHandler
+	public void onBookEdit(PlayerEditBookEvent event) {
+		if(getConfig().getString("book") == "true") {
+		Player player = event.getPlayer();
+		if(player.hasPermission("buildblock.ignore.book")) {
+		return;
+		} else {
+				event.setCancelled(true);
+				if(getConfig().getString("bookmessage") == "true") {
+					player.sendMessage(ChatColor.translateAlternateColorCodes( '&' ,getConfig().getString("bookm").replaceAll("%n%", "\n")));
+				}
+		}
+		}
+	}
+
+	@EventHandler
+	public void onBucke(PlayerBucketEmptyEvent event) {
+		if(getConfig().getString("bucket") == "true") {
+		Player player = event.getPlayer();
+		if(player.hasPermission("buildblock.ignore.bucket")) {
+		return;
+		} else {
+				event.setCancelled(true);
+				if(getConfig().getString("bucketmessage") == "true") {
+					player.sendMessage(ChatColor.translateAlternateColorCodes( '&' ,getConfig().getString("bucketm").replaceAll("%n%", "\n")));
 				}
 		}
 		}

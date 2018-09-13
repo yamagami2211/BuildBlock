@@ -1,5 +1,5 @@
 name: BuildBlock
-version: 1.0.0
+version: 1.0.1
 main: biz.yama2211.bb.Main
 
 commands:
@@ -21,6 +21,16 @@ permissions:
   buildblock.ignore.pickup:
     description: 拾うことの制限
     default: op
+  buildblock.ignore.bed:
+    description: ベットに入ることの制限
+    default: op
+  buildblock.ignore.book:
+    description: 本の編集することの制限
+    default: op
+  buildblock.ignore.bucket:
+    description: バケツをぶちまけることの制限
+    default: op
+
   buildblock.ignore.*:
     description: 制限系権限のすべて
     default: op
@@ -29,6 +39,8 @@ permissions:
       buildblock.ignore.put: true
       buildblock.ignore.drop: true
       buildblock.ignore.pickup: true
+      buildblock.ignore.book: true
+      buildblock.ignore.bucket: true
   buildblock.admin:
     description: リロード
     default: op
