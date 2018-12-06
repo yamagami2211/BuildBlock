@@ -72,3 +72,26 @@ destroy: true
 #乗り物が生まれる
 #トロッコなどが設置されるとかかな?
 create: true
+
+#1.0.3で追加項目
+
+#釣り
+#Permission : buildblock.ignore.fish
+fish: true
+fishmessage: true
+fishm: "釣りはできません"
+
+#スプラッシュポーションの禁止
+splash: true
+
+#かまどで精錬
+furnace: true
+
+#醸造
+brew: true
+
+#チェストを開ける
+#Permission : buildblock.ignore.chestopen
+chestopen: true
+chestopenmessage: true
+chestopenm: "チェストを開けることはできません。"
