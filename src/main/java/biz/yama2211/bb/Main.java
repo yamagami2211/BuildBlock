@@ -16,10 +16,16 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockGrowEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.inventory.BrewEvent;
+import org.bukkit.event.inventory.FurnaceSmeltEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerEditBookEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.vehicle.VehicleCreateEvent;
 import org.bukkit.event.vehicle.VehicleDestroyEvent;
@@ -189,6 +195,65 @@ public class Main extends JavaPlugin implements Listener {
 	public void onCreate(VehicleCreateEvent event) {
 		if (getConfig().getBoolean("create") == true) {
 			event.setCancelled(true);
+		}
+	}
+
+	//1.0.3追加項目
+	@EventHandler
+	public void onFish(PlayerFishEvent event) {
+		if (getConfig().getBoolean("fish") == true) {
+			Player player = event.getPlayer();
+			if (player.hasPermission("buildblock.ignore.fish")) {
+				return;
+			} else {
+				event.setCancelled(true);
+				if (getConfig().getBoolean("fishmessage") == true) {
+					player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+							getConfig().getString("fishm").replaceAll("%n%", "\n")));
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onSplash(PotionSplashEvent event) {
+		if (getConfig().getBoolean("splash") == true) {
+			event.setCancelled(true);
+		}
+	}
+
+	@EventHandler
+	public void onFurnace(FurnaceSmeltEvent event) {
+		if (getConfig().getBoolean("furnace") == true) {
+			event.setCancelled(true);
+		}
+	}
+
+	@EventHandler
+	public void onBrew(BrewEvent event) {
+		if (getConfig().getBoolean("brew") == true) {
+			event.setCancelled(true);
+		}
+	}
+
+	//参考というなの丸パクリ:https://www.spigotmc.org/threads/chest-open-event.145369/#post-1546089
+	@EventHandler
+	public void catchChestOpen(InventoryOpenEvent event) {
+		if (getConfig().getBoolean("chestopen")) {
+			if (event.getInventory().getType().equals(InventoryType.CHEST)) {
+				Player player = (Player) event.getPlayer();
+
+				if (player.hasPermission("buildblock.ignore.chestopen")) {
+					return;
+				} else {
+					event.setCancelled(true);
+					if (getConfig().getBoolean("chestopenmessage") == true) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+								getConfig().getString("chestopenm").replaceAll("%n%", "\n")));
+					}
+				}
+
+			}
 		}
 	}
 
