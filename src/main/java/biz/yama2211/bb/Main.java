@@ -272,7 +272,7 @@ public class Main extends JavaPlugin implements Listener {
 			if (args[0].equalsIgnoreCase("reload")) {
 				if ((sender.hasPermission("buildblock.admin")) || (sender.isOp())) {
 					reloadConfig();
-					sender.sendMessage(ChatColor.LIGHT_PURPLE + "Configのリロードしました。");
+					sender.sendMessage(ChatColor.LIGHT_PURPLE + "Configをリロードしました。");
 					return true;
 				} else {
 					sender.sendMessage(ChatColor.RED + "権限がないので実行できません。");
