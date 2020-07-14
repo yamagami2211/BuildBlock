@@ -1,9 +1,5 @@
-# なんかいろいろ制限するプラグイン:BuildBlock
-例えば、PvPサーバーとか、アスレチックサーバーとかで使えるんじゃないかなって。  
-あ、でも、アドベンチャーモードにしちゃえばブロックの設置破壊できないし、そっちのほうがらくかも
+個人リポジトリから移動しました。  
+https://github.com/plugin-yamagami2211/BuildBlock
 
-# ダウンロード
-~~非公式フォーラムにて記事を作成しました。  
-そちらからどうぞ。  
-http://forum.minecraftuser.jp/viewtopic.php?f=38&t=36794~~
-ここ→https://yama2211.biz/minecraft/buildblock/ からどうぞ。  
+やまがみ製のSpigotPlugin  
+https://github.com/plugin-yamagami2211
